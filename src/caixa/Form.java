@@ -12,14 +12,16 @@ import java.util.stream.Collectors;
 public class Form extends javax.swing.JFrame {
     
     List <Senha> password;
-    int cont, i;
+    List <Cliente> atendimento;
+    
+    int cont, i, atend;
     
     private void requestPassword(int x, String t){
     //Iterator<Senha> itr = password.iterator();
         for(i = 0; i < password.size(); i++){
             if(password.get(i).getSenha().contains(t)){
                 lbSenha.setText(password.get(i).getSenha()+"-"+password.get(i).getCont());
-                lbCaixa.setText("CAIXA"+x);
+                lbCaixa.setText("CAIXA "+ x);
                 password.remove(i);
                 return;
             }
@@ -27,10 +29,10 @@ public class Form extends javax.swing.JFrame {
     
         if(password.size() > 0){
             lbSenha.setText(password.get(0).getSenha()+"-"+password.get(0).getCont());
-            lbCaixa.setText("CAIXA"+x);
+            lbCaixa.setText("CAIXA "+ x);
             password.remove(0);
         }
-        
+                
     }
     
     public Form() {
@@ -39,6 +41,13 @@ public class Form extends javax.swing.JFrame {
         cont = 0;
         password = new ArrayList<Senha>();
     
+    }
+    
+    
+    
+    public void Atend() {
+        atendimento = new ArrayList<Cliente>();
+
     }
 
 
@@ -62,6 +71,7 @@ public class Form extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lbSenha = new javax.swing.JLabel();
         lbCaixa = new javax.swing.JLabel();
+        tfCliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,30 +228,37 @@ public class Form extends javax.swing.JFrame {
         lbCaixa.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         lbCaixa.setText("CAIXA 1");
 
+        tfCliente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        tfCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCliente.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(470, 470, 470)
+                        .addComponent(lbSenha)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(401, 401, 401)
+                                .addComponent(lbCaixa))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(401, 401, 401)
-                .addComponent(lbCaixa)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(470, 470, 470)
-                .addComponent(lbSenha)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,15 +266,18 @@ public class Form extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(lbSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(lbCaixa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbCaixa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -276,13 +296,19 @@ public class Form extends javax.swing.JFrame {
             cont++;
             Senha Senha = new Senha("R", cont);
             password.add(Senha);
+            
             tfSenha.setText(Senha.getSenha() + "-" + String.valueOf(Senha.getCont()));
     }//GEN-LAST:event_btnRapidoActionPerformed
 
     private void btnComumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComumActionPerformed
             cont++;
+            atend = cont;
             Senha Senha = new Senha("C", cont);
+            Cliente Cliente = new Cliente ("C", atend);
             password.add(Senha);
+            atend = cont;
+            System.out.println(Cliente.toString());
+            //System.out.println(Cliente.getCliente() + "-" + String.valueOf(Cliente.getAtend()));
             tfSenha.setText(Senha.getSenha() + "-" + String.valueOf(Senha.getCont()));
     }//GEN-LAST:event_btnComumActionPerformed
 
@@ -356,6 +382,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbCaixa;
     private javax.swing.JLabel lbSenha;
+    private javax.swing.JTextField tfCliente;
     private javax.swing.JTextField tfSenha;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,5 +36,6 @@ public class Senha {
 
     public void setCont(int cont) {
         this.cont = cont;
-    }   
+    }
+    
 }
