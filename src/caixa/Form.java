@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 public class Form extends javax.swing.JFrame {
     
     List <Senha> password;
-    List <Cliente> atendimento;
+    ArrayList<String> cliente = new ArrayList();
     
-    int cont, i, atend;
+    int cont, i;
     
     private void requestPassword(int x, String t){
     //Iterator<Senha> itr = password.iterator();
@@ -44,13 +44,6 @@ public class Form extends javax.swing.JFrame {
     }
     
     
-    
-    public void Atend() {
-        atendimento = new ArrayList<Cliente>();
-
-    }
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -296,19 +289,18 @@ public class Form extends javax.swing.JFrame {
             cont++;
             Senha Senha = new Senha("R", cont);
             password.add(Senha);
-            
+            cliente.add("R-" + Integer.toString(cont));
+            System.out.println(cliente);
             tfSenha.setText(Senha.getSenha() + "-" + String.valueOf(Senha.getCont()));
     }//GEN-LAST:event_btnRapidoActionPerformed
 
     private void btnComumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComumActionPerformed
             cont++;
-            atend = cont;
             Senha Senha = new Senha("C", cont);
-            Cliente Cliente = new Cliente ("C", atend);
+            //Cliente Cliente = new Cliente ("C", cont);
             password.add(Senha);
-            atend = cont;
-            System.out.println(Cliente.toString());
-            //System.out.println(Cliente.getCliente() + "-" + String.valueOf(Cliente.getAtend()));
+            cliente.add("C-" + Integer.toString(cont));
+            System.out.println(cliente);
             tfSenha.setText(Senha.getSenha() + "-" + String.valueOf(Senha.getCont()));
     }//GEN-LAST:event_btnComumActionPerformed
 
@@ -316,7 +308,10 @@ public class Form extends javax.swing.JFrame {
             cont++;
             Senha Senha = new Senha("P", cont);
             password.add(Senha);
+            cliente.add("P-" + Integer.toString(cont));
+            System.out.println(cliente);
             tfSenha.setText(Senha.getSenha() + "-" + String.valueOf(Senha.getCont()));
+            //tfCliente.setText(cliente);
     }//GEN-LAST:event_btnPrioritarioActionPerformed
 
     private void btnCaixa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixa1ActionPerformed
